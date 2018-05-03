@@ -39,7 +39,7 @@ waiting_time2 = [0]*n
 for c1 in range(n):
 
     if c1 == 0:
-        turnaround_time[c1] = burst_time[c1]
+        turnaround_time[c1] = burst_time[c1] - arrival_time[c1]
         print "P", process[c1], "     ", burst_time[c1], "      ", waiting_time[c1], "      ", turnaround_time[c1]
     elif c1 > 0:
         for c2 in range(c1):
