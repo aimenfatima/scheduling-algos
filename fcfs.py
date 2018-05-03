@@ -52,7 +52,7 @@ average = 0.0
 total = 0
 for c1 in range(n):
     total += turnaround_time[c1]
-average = (total/n)*100
+average = total/n
 print "average turnaround time:", average
 
 total_waiting = 0
