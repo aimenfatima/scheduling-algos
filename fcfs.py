@@ -32,15 +32,30 @@ for c1 in range(n):
             process[c2] = process[c2 + 1]
             process[c2 + 1] = temp2
 
-print "Process     burst time      waiting time      turnaround time"
+print "Process burst time waiting time turnaround time"
+turnaround_time = [0]*n
+waiting_time = [0]*n
+waiting_time2 = [0]*n
 for c1 in range(n):
 
     if c1 == 0:
-        print "P", process[c1], "        ", burst_time[c1], "             ", 0, "               ", burst_time[c1]-arrival_time[c1]
+        turnaround_time[c1] = burst_time[c1]
+        print "P", process[c1], "     ", burst_time[c1], "      ", waiting_time[c1], "      ", turnaround_time[c1]
     elif c1 > 0:
-        waiting_time = 0
-        waiting_time2=0
         for c2 in range(c1):
-            waiting_time += burst_time[c2]
-            waiting_time2 = waiting_time + burst_time[c2]
-        print "P", process[c1], "        ", burst_time[c1], "             ",  waiting_time, "              ", waiting_time2-arrival_time[c1]
+            waiting_time[c1] += burst_time[c2]
+            waiting_time2[c1] = waiting_time[c1] + burst_time[c2]
+            turnaround_time[c1] = waiting_time2[c1] - arrival_time[c1]
+        print "P", process[c1], "     ", burst_time[c1], "      ", waiting_time[c1], "     ", turnaround_time[c1]
+
+average = 0.0
+total = 0
+for c1 in range(n):
+    total += turnaround_time[c1]
+average = (total/n)*100
+print "average turnaround time:", average
+
+total_waiting = 0
+for c1 in range(n):
+    total_waiting += waiting_time[c1]
+print "total waiting time:", total_waiting
